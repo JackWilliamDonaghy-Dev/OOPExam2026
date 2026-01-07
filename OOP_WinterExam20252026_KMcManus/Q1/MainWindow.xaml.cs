@@ -30,12 +30,13 @@ namespace Q1
             tbckRobotInformation.Text = "";
             lbxRobots.ItemsSource = robots; // change to filter using radio buttons
 
+            //They are all out of battery haha (on purpose) ((no AA batteries included in purchase :)))
             HouseholdRobot rb1 = new HouseholdRobot("HouseBot");
             HouseholdRobot rb2 = new HouseholdRobot("GardenBot");
             HouseholdRobot rb3 = new HouseholdRobot("Housemate 3000");
-            DeliveryRobot rb4 = new DeliveryRobot("DeliverBot");
-            DeliveryRobot rb5 = new DeliveryRobot("FlyBot");
-            DeliveryRobot rb6 = new DeliveryRobot("Driver");
+            DeliveryRobot rb4 = new DeliveryRobot("DeliverBot", DeliveryMode.Walking, 50);
+            DeliveryRobot rb5 = new DeliveryRobot("FlyBot", DeliveryMode.Flying, 20);
+            DeliveryRobot rb6 = new DeliveryRobot("Driver", DeliveryMode.Driving, 250);
 
             rb2.DownloadSkill(HouseholdSkill.Gardening);
             rb3.DownloadSkill(HouseholdSkill.Cooking);
@@ -53,8 +54,37 @@ namespace Q1
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            //rb.GroupName, rb.Name;
+            
+            if (rb.Name == "rbtnHouseRobots")
+            {
+                var householdRobots = new ObservableCollection<Robot>();
+                foreach (var robot in robots)
+                {
+                    if (robot is HouseholdRobot)
+                    {
+                        householdRobots.Add(robot);
+                    }
+                }
+                lbxRobots.ItemsSource = householdRobots;
+            }
+            else if (rb.Name == "rbtnDriverRobots")
+            {
+                var deliveryRobots = new ObservableCollection<Robot>();
+                foreach (var robot in robots)
+                {
+                    if (robot is DeliveryRobot)
+                    {
+                        deliveryRobots.Add(robot);
+                    }
+                }
+                lbxRobots.ItemsSource = deliveryRobots;
+            }
+            else
+            {
+                lbxRobots.ItemsSource = robots;
+            }
         }
+           
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

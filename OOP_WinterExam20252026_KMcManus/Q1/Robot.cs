@@ -109,7 +109,7 @@ namespace Q1
 
         public override string ToString()
         {
-            return $"{RobotName} - [HouseholdRobot]";
+            return $"{RobotName} - [DeliveryRobot]";
         }
 
         public DeliveryRobot(string robotName, DeliveryMode delivery, double maxLoad) : base(robotName)
