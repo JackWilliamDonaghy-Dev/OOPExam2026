@@ -1,4 +1,12 @@
-﻿<Window x:Class="Q1.MainWindow"
+﻿<!-- installing design materials failed - error message - Install-Package : No match was found for the specified search criteria and package name 'MaterialDesignThemes'. Try
+Get-PackageSource to see all available registered package sources.
+At line:1 char:1
++ Install-Package MaterialDesignThemes
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft.Power....InstallPackage:InstallPackage) [Install-Package], Ex
+   ception
+    + FullyQualifiedErrorId : NoMatchFoundForCriteria,Microsoft.PowerShell.PackageManagement.Cmdlets.InstallPackage-->
+    <Window x:Class="Q1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +15,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="33*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Filter" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="24"/>
+        <Label Content="Robot List" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="24"/>
+        <Label Content="Robot Details" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="24"/>
+
+
+        <StackPanel Grid.Row="1">
+            <RadioButton x:Name="rbtnAllRobots" Checked="HandleCheck" GroupName="robotType" Content="ALL ROBOTS" IsChecked="True" />
+            <RadioButton x:Name="rbtnHouseRobots" Checked="HandleCheck" GroupName="robotType" Content="HOUSEHOLD"/>
+            <RadioButton x:Name="rbtnDriverRobots" Checked="HandleCheck" GroupName="robotType" Content="DRIVER"/>
+        </StackPanel>
+        
+        <ListBox Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="106,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

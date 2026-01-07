@@ -20,5 +20,16 @@ namespace Q1
         {
             InitializeComponent();
         }
+
+        private void HandleCheck(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            //rb.GroupName, rb.Name;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
